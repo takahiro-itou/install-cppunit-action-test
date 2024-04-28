@@ -1,5 +1,5 @@
 
-name : Hello World Test
+name : Install CppUnit Test
 
 on :
   push :
@@ -20,7 +20,7 @@ jobs :
       - uses : actions/checkout@v4
 
       - id : foo
-        uses : takahiro-itou/hello-world-composite-action@master
+        uses : takahiro-itou/install-cppunit-action@develop
         with :
           who-to-greet : ${{ matrix.who-args }}
 
