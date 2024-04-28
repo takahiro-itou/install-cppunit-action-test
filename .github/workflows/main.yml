@@ -14,7 +14,8 @@ jobs :
       fail-fast : false
 
       matrix :
-        with-cppunit : [ no ]
+        with-cppunit :
+          - no
 
     steps :
       - uses : actions/checkout@v4
