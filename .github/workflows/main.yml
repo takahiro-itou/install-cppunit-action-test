@@ -16,6 +16,7 @@ jobs :
       matrix :
         with-cppunit :
           - no
+          - ${{ github.workspace }}/tools/cppunit
 
     steps :
       - uses : actions/checkout@v4
