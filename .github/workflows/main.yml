@@ -6,15 +6,9 @@ on :
     branches : [ "master", "develop" ]
 
 jobs :
-  hello_world_job :
+  install_cppunit_job:
     runs-on : ubuntu-latest
-    name : A job to say hello
-
-    strategy :
-      fail-fast : false
-
-      matrix :
-        who-args : [ 'Mona the Octocat', 'Second' ]
+    name : install CppUnit
 
     steps :
       - uses : actions/checkout@v4
@@ -22,23 +16,9 @@ jobs :
       - id : foo
         uses : takahiro-itou/install-cppunit-action@develop
         with :
-          who-to-greet : ${{ matrix.who-args }}
-
-      - run   : echo random-number "$RANDOM_NUMBER"
-        shell : bash
-        env   :
-          RANDOM_NUMBER : ${{ steps.foo.outputs.random-number }}
-
-      - run   : |
-          echo common-value "${COMMON_VALUE}"
-          echo cached-date  "${CACHED_DATE}"
-        shell : bash
-        env   :
-          COMMON_VALUE : ${{ steps.foo.outputs.common-value }}
-          CACHED_DATE  : ${{ steps.foo.outputs.cached-date }}
+          install-prefix : ${{ github.workspace }}/tools/cppunit
 
       - run : |
           pwd
-          ls -alR
-          md5sum -b ./init/*.txt
+          ls -alR toos/
         shell : bash
