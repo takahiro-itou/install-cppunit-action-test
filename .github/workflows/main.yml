@@ -14,7 +14,7 @@ jobs :
       fail-fast : false
 
       matrix :
-        with-cppunit : [ no ]
+        with-cppunit : [ no, ${{ github.workspace }} ]
 
     steps :
       - uses : actions/checkout@v4
