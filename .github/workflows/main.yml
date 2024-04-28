@@ -16,7 +16,7 @@ jobs :
       matrix :
         with-cppunit :
           - no
-          - tools/cppunit
+          - ${{ github.workspace }}
 
     steps :
       - uses : actions/checkout@v4
@@ -37,5 +37,5 @@ jobs :
         run : |
           pwd
           echo "${{ github.workspace }}"
-          ls -alR "${{ github.workspace }}/tools/"
+          ls -lR "${{ github.workspace }}"
         shell : bash
