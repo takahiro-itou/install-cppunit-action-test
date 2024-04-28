@@ -20,5 +20,6 @@ jobs :
 
       - run : |
           pwd
-          ls -alR toos/
+          echo "${{ github.workspace }}"
+          ls -alR "${{ github.workspace }}/tools/"
         shell : bash
