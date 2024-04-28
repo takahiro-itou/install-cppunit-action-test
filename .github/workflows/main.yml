@@ -10,6 +10,12 @@ jobs :
     runs-on : ubuntu-latest
     name : install CppUnit
 
+    strategy :
+      fail-fast : false
+
+      matrix :
+        with-cppunit : [ no, ${{ github.workspace }}/tools/cppunit ]
+
     steps :
       - uses : actions/checkout@v4
 
