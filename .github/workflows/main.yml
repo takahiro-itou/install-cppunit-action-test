@@ -21,12 +21,19 @@ jobs :
     steps :
       - uses : actions/checkout@v4
 
+      - name : Print Install Dir
+        run : |
+          echo "workspace = ${{ github.workspace }}"
+          echo "target    = ${{ matrix.with-cppunit }}"
+        shell : bash
+
       - id : foo
         uses : takahiro-itou/install-cppunit-action@develop
         with :
           install-prefix : ${{ github.workspace }}/tools/cppunit
 
-      - run : |
+      - name : Post-Show Workspace
+        run : |
           pwd
           echo "${{ github.workspace }}"
           ls -alR "${{ github.workspace }}/tools/"
