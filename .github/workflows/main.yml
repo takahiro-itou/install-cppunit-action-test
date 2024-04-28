@@ -29,11 +29,9 @@ jobs :
 
       - if : ${{ matrix.with-cppunit != 'no' }}
         name : Install CppUnit
-        env  :
-          INSTALL_PREFIX : "${{ github.workspace }}/${{ matrix.with-cppunit }}"
         uses : takahiro-itou/install-cppunit-action@develop
         with :
-          install-prefix : ${INSTALL_PREFIX}
+          install-prefix : "${{ github.workspace }}/${{ matrix.with-cppunit }}"
 
       - name : Post-Show Workspace
         run : |
