@@ -25,6 +25,8 @@ jobs :
         run : |
           echo "workspace = ${{ github.workspace }}"
           echo "target    = ${{ matrix.with-cppunit }}"
+          sudo  mkdir -p  /tools
+          ls /
         shell : bash
 
       - if : ${{ matrix.with-cppunit != 'no' }}
