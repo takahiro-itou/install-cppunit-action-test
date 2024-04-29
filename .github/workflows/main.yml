@@ -16,7 +16,7 @@ jobs :
       matrix :
         with-cppunit :
           - no
-          - ~/tools/cppunit
+          - ${HOME}/tools/cppunit
           - tools/cppunit
 
     steps :
