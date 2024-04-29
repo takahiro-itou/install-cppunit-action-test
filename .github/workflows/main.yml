@@ -40,4 +40,5 @@ jobs :
           pwd
           echo "${{ github.workspace }}"
           ls -lR "${{ github.workspace }}"
+          ls -lR "${{ matrix.with-cppunit }}"
         shell : bash
