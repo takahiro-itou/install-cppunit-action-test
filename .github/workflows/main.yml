@@ -16,6 +16,7 @@ jobs :
       matrix :
         with-cppunit :
           - no
+          - ~/tools/cppunit
           - tools/cppunit
 
     steps :
@@ -30,14 +31,17 @@ jobs :
         shell : bash
 
       - if : ${{ matrix.with-cppunit != 'no' }}
+        id   : install-cppunit
         name : Install CppUnit
         uses : takahiro-itou/install-cppunit-action@develop
         with :
-          install-prefix : "${{ github.workspace }}/${{ matrix.with-cppunit }}"
+          install-prefix : "${{ matrix.with-cppunit }}"
 
       - name : Post-Show Workspace
         run : |
           pwd
           echo "${{ github.workspace }}"
-          ls -lR "${{ github.workspace }}"
+          echo "${{ steps.install-cppunit.outputs.real-install-dir }}"
+          ls -lR "${{ steps.install-cppunit.outputs.real-install-dir }}"
+
         shell : bash
