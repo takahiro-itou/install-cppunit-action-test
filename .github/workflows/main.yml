@@ -30,9 +30,9 @@ jobs :
           ls /
         shell : bash
 
-      - if : ${{ matrix.with-cppunit != 'no' }}
+      - name : Install CppUnit
         id   : install-cppunit
-        name : Install CppUnit
+        if   : ${{ matrix.with-cppunit != 'no' }}
         uses : takahiro-itou/install-cppunit-action@develop
         with :
           install-prefix : "${{ matrix.with-cppunit }}"
