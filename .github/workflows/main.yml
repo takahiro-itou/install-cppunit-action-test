@@ -46,6 +46,7 @@ jobs :
           pwd
           echo "${{ github.workspace }}"
           echo "${{ steps.install-cppunit.outputs.real-install-dir }}"
-          ls -lR "${{ steps.install-cppunit.outputs.real-install-dir }}"
-
+          if [[ "X${{ matrix.with-cppunit }}Y" != 'XnoY' ]] ; then
+            ls -lR "${{ steps.install-cppunit.outputs.real-install-dir }}"
+          fi
         shell : bash
