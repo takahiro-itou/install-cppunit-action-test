@@ -37,6 +37,11 @@ jobs :
         with :
           install-prefix : "${{ matrix.with-cppunit }}"
 
+      - name : Skipped Install
+        id   : install-cppunit
+        if   : ${{ steps.install-cppunit.conclusion == 'skipped' }}
+        run  : echo "real-install-dir=no" | tee -a "${GITHUB_OUTPUT}"
+
       - name : Post-Show Workspace
         run : |
           pwd
