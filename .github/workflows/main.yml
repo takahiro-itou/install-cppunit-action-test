@@ -28,6 +28,7 @@ jobs :
           echo "target    = ${{ matrix.with-cppunit }}"
           sudo  mkdir -p  /tools
           ls /
+          df -h
         shell : bash
 
       - name : Install CppUnit
@@ -44,4 +45,5 @@ jobs :
           if [[ "X${{ matrix.with-cppunit }}Y" != 'XnoY' ]] ; then
             ls -lR "${{ steps.install-cppunit.outputs.real-install-dir }}"
           fi
+          df -h
         shell : bash
