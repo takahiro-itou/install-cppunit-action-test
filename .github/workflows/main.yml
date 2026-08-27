@@ -1,14 +1,10 @@
 
 name : Install CppUnit Test
 
-on :
-  push :
-    branches : [ "master", "develop" ]
-
 jobs :
-  install_cppunit_job:
+  install_cppunit_job :
     runs-on : ubuntu-latest
-    name : install CppUnit
+    name    : Install CppUnit
 
     strategy :
       fail-fast : false
@@ -20,7 +16,10 @@ jobs :
           - tools/cppunit
 
     steps :
-      - uses : actions/checkout@v4
+      - name : Checkout
+        uses : actions/checkout@v7
+        with :
+          submodules : recursive
 
       - name : Print Install Dir
         run : |
@@ -28,6 +27,7 @@ jobs :
           echo "target    = ${{ matrix.with-cppunit }}"
           sudo  mkdir -p  /tools
           ls /
+          df -h
         shell : bash
 
       - name : Install CppUnit
@@ -44,4 +44,12 @@ jobs :
           if [[ "X${{ matrix.with-cppunit }}Y" != 'XnoY' ]] ; then
             ls -lR "${{ steps.install-cppunit.outputs.real-install-dir }}"
           fi
+          df -h
         shell : bash
+
+on :
+  push :
+    branches : [ "master", "develop" ]
+  pull_request :
+    branches : [ "master", "develop" ]
+  workflow_dispatch :
